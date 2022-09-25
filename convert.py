@@ -39,7 +39,7 @@ def convert(file):
 
     fp_fn = path_split(file)
     new_fn = fp_fn[1].split('.')
-    new_fn[-2] = '{}_converted'.format(new_fn[-2])
+    new_fn[-2] = f'{new_fn[-2]}_converted'
     new_file = path_join(fp_fn[0], ".".join(new_fn))
     with open(new_file, "w+", encoding='utf-8') as f:
         dom.writexml(f, encoding="utf-8")
@@ -47,13 +47,13 @@ def convert(file):
 
 if __name__ == "__main__":
     filelist = argv[1:]
-    
+
     for file in filelist:
-        print('Processing {}...'.format(file))
+        print(f'Processing {file}...')
         try:
             convert(file)
         except Exception as e:
-            print('Error while processing {}:'.format(file))
+            print(f'Error while processing {file}:')
             print(e)
 
     print('All done.')
